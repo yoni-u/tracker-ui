@@ -8,7 +8,7 @@ import render from './render.jsx';
 const app = express();
 
 SourceMapSupport.install();
-const result = dotenv.config();
+const result = dotenv.config({ silent: true });
 
 if (result.error) {
   throw result.error;
