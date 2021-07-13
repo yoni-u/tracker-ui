@@ -8,12 +8,8 @@ import render from './render.jsx';
 const app = express();
 
 SourceMapSupport.install();
-const result = dotenv.config({ silent: true });
+dotenv.config();
 
-if (result.error) {
-  throw result.error;
-}
-console.log(result.parsed);
 
 const enableHMR = (process.env.ENABLE_HMR || 'true') === 'true';
 
@@ -66,12 +62,12 @@ app.get('*', (req, res, next) => {
   render(req, res, next);
 });
 
-
 const port = process.env.PORT || 8000;
 
 app.listen(port, () => {
   console.log(`UI started on port ${port}`);
   console.log(`Am i reading the env variable ${process.env.UI_SERVER_PORT}`);
+  console.log(`this var is working + ${process.env.UI_API_ENDPOINT}`);
 });
 
 if (module.hot) {
